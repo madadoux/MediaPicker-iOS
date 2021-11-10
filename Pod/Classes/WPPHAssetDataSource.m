@@ -146,7 +146,7 @@
                     NSError *error = [NSError errorWithDomain:WPMediaPickerErrorDomain code:WPMediaPickerErrorCodePermissionDenied userInfo:nil];
                     failureBlock(error);
                 }
-                return;
+                
             }
             case PHAuthorizationStatusNotDetermined:
             {
@@ -499,9 +499,9 @@
 - (WPMediaRequestID)imageWithSize:(CGSize)size completionHandler:(WPMediaImageBlock)completionHandler
 {
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.synchronous = NO;
+    options.synchronous = YES;
     options.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
-    options.resizeMode = PHImageRequestOptionsResizeModeFast;
+    options.resizeMode = PHImageRequestOptionsResizeModeExact;
     options.networkAccessAllowed = YES;
     CGSize requestSize = size;
     if (CGSizeEqualToSize(requestSize, CGSizeZero)) {
